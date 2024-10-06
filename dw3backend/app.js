@@ -1,14 +1,21 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const router = require("./routes/routes"); // Verifique se o caminho está correto
-require("dotenv").config();
+const express = require('express');
+const bodyParser = require('body-parser');
+require('dotenv').config();
+
+const router = require('./routes/router');
 
 const app = express();
 const port = 40000;
 
+// app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: false, }));
 app.use(express.json());
-app.use(router); // Usando o router exportado
+
+//@ Utiliza o routerApp configurado em ./routes/route.js
+app.use(router);
+
+
 
 app.listen(port, () => {
-    console.log(`App listening at port ${port}`);
-});
+  console.log(`App listening at port ${port}`)
+})
